@@ -65,7 +65,7 @@ cognitive_voice_pipeline/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/cognitive_voice_pipeline.git
+https://github.com/evars69/cognitive_voice_pipeline.git
 cd cognitive_voice_pipeline
 ```
 
