@@ -3,8 +3,8 @@ import whisper
 # Load Whisper model
 model = whisper.load_model("base")
 
-# Path to your audio file (replace with your actual file path)
-audio_path = "data/Recording.m4a"  # Update with the actual path
+# Path to audio file 
+audio_path = "data/Recording.m4a"  
 
 # Load audio and prepare it for transcription
 audio = whisper.load_audio(audio_path)
