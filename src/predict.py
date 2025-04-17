@@ -44,6 +44,6 @@ def predict(audio_path):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python src/predict.py <path_to_audio_file>")
+        print("Usage: python src/predict.py <data/Recording.m4a>")
     else:
         predict(sys.argv[1])
