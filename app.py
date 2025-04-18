@@ -15,7 +15,7 @@ def home():
 def predict_audio():
     if "file" not in request.files:
         return jsonify({"error": "No file part in request"}), 400
-    
+
     file = request.files["file"]
 
     if file.filename == "":
@@ -25,7 +25,6 @@ def predict_audio():
     filepath = os.path.join(UPLOAD_FOLDER, filename)
     file.save(filepath)
 
-    # Calling existing prediction function
     try:
         pred = predict(filepath)
         return jsonify({"prediction": pred})
@@ -33,4 +32,5 @@ def predict_audio():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    print("MemoTag Voice API is running locally on http://127.0.0.1:5000 ✅")
+    app.run(debug=True, port=5000)

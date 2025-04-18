@@ -1,4 +1,3 @@
-# src/predict.py
 import librosa
 import numpy as np
 import joblib
@@ -14,19 +13,14 @@ def extract_features(audio_path):
     mfcc_mean = np.mean(mfcc.T, axis=0)
     chroma_mean = np.mean(chroma.T, axis=0)
 
-    print(f"MFCC shape: {mfcc_mean.shape}")    # Debug
-    print(f"Chroma shape: {chroma_mean.shape}")  # Debug
-
+    # Combine features
     features = np.hstack([mfcc_mean, chroma_mean])
-    print(f"Combined feature shape before padding: {features.shape}")  # Debug
 
-    # Ensure feature vector has exactly 26 values
+    # Ensuring feature vector has exactly 26 values
     if len(features) < 26:
         features = np.pad(features, (0, 26 - len(features)))
     elif len(features) > 26:
         features = features[:26]
-
-    print(f"Final feature shape: {features.shape}")  # Debug
 
     return features.reshape(1, -1)  # Reshape to (1, 26) for prediction
 
@@ -38,11 +32,17 @@ def predict(audio_path):
 
     features = extract_features(audio_path).reshape(1, -1)
 
-    model = joblib.load("model/voice_model.pkl")
+    # Ensure model file exists
+    model_path = "model/voice_model.pkl"
+    if not os.path.exists(model_path):
+        print(f"Model file not found: {model_path}")
+        sys.exit(1)
+
+    model = joblib.load(model_path)
     prediction = model.predict(features)
     print(f"Predicted cognitive state: {prediction[0]}")
 
-    return prediction[0]   # ✅ This line is important!
+    return prediction[0]  # Return the predicted result
 
 
 if __name__ == "__main__":
@@ -50,5 +50,3 @@ if __name__ == "__main__":
         print("Usage: python src/predict.py <data/Recording.m4a>")
     else:
         predict(sys.argv[1])
-
-

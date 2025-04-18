@@ -1,6 +1,9 @@
 # 🧠 MemoTag | Voice-Based Cognitive Decline Detection
 
-Welcome to  **MemoTag's Speech Intelligence Module** , a proof-of-concept system that leverages **audio feature engineering + machine learning** to detect **early signs of cognitive decline** — all from just a voice sample. 🎙️🧬
+Welcome to **MemoTag's Speech Intelligence Module**, a research prototype that leverages **audio feature engineering + machine learning** to detect **early signs of cognitive decline** — all from just a voice sample. 🎙️🧬
+
+🌐 **Live API (Render)**: https://cognitive-voice-pipeline-1.onrender.com
+🖥️ **Local Server**: http://127.0.0.1:5000
 
 ---
 
@@ -8,56 +11,55 @@ Welcome to  **MemoTag's Speech Intelligence Module** , a proof-of-concept system
 
 Cognitive impairment often first reveals itself in subtle changes in speech: increased pauses, hesitation words, inconsistent pitch, or trouble recalling words.
 
-The goal of this project is to **detect those indicators** from voice recordings and classify them as  **healthy** ,  **mild decline** , or **slow decline** using unsupervised + supervised ML.
+This system aims to **detect those indicators** from voice recordings and classify them into:
+
+- ✅ **Healthy**
+- ⚠️ **Mild Decline**
+- 🔴 **Slow Decline**
 
 ---
 
 ## 🌟 Objectives
 
-* Preprocess audio files and convert speech to text (planned)
-* Extract cognitive-indicative features such as:
-  * 🎵 MFCCs
-  * 🎼 Chroma features
-  * 🗣️ Speech rhythm
-  * 🚧 Hesitation markers *(planned)*
-  * 🧠 Word recall/naming tasks *(planned NLP features)*
-* Use ML to detect early decline:
-  * Supervised Random Forest classification
-  * Unsupervised Isolation Forest anomaly detection *(optional)*
+- 🎯 Preprocess audio files and (planned) convert speech to text
+- 🎵 Extract cognitive-indicative features like:
+  - MFCCs (Mel-Frequency Cepstral Coefficients)
+  - Chroma features
+  - Speech rhythm
+  - 🚧 Hesitation markers *(planned)*
+  - 🧠 Word recall & naming tasks *(planned NLP features)*
+- 🧠 Train ML models to detect decline:
+  - ✅ Random Forest Classifier
+  - 🔍 Isolation Forest *(optional)*
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer               | Tech Used                                        |
-| ------------------- | ------------------------------------------------ |
-| Audio Parsing       | `librosa`,`soundfile`,`audioread`          |
-| ML Model            | `scikit-learn`(RandomForest, Isolation Forest) |
-| Feature Engineering | MFCC, Chroma, Zero-Cross                         |
-| Deployment Ready    | Python CLI scripts                               |
-| Future Plan         | Flask API + Frontend UI                          |
+| Layer               | Tech Used                                         |
+| ------------------- | ------------------------------------------------- |
+| Audio Parsing       | `librosa`, `soundfile`, `audioread`         |
+| ML Model            | `scikit-learn` (RandomForest, Isolation Forest) |
+| Feature Engineering | MFCC, Chroma, Zero-Cross                          |
+| API Server          | `Flask`                                         |
+| Deployment          | `Render`, `Postman` testing                   |
+| Future Additions    | Speech-to-text, NLP, Frontend UI                  |
 
 ---
 
 ## 🗂️ Project Structure
 
-```
 cognitive_voice_pipeline/
-├── data/                  # Input audio files (m4a, wav, etc.)
-│   └── Recording.m4a
-├── model/                 # Saved ML models
-│   └── voice_model.pkl
-├── result/                # Output predictions and analysis (to be updated)
-│
+├── data/              # Input audio files (m4a, wav, etc.)
+├── model/             # Saved ML models
+├── result/            # Output predictions
 ├── src/
-│   ├── extract_features.py   # MFCC, Chroma, etc.
-│   ├── train.py              # Train and save RandomForestClassifier
-│   └── predict.py        # Load model and predict cognitive state
-│
+│   ├── extract_features.py
+│   ├── train.py
+│   ├── predict.py
+├── app.py             # Flask API server (root-level)
 ├── requirements.txt
 └── README.md
-
-```
 
 ---
 
@@ -66,87 +68,88 @@ cognitive_voice_pipeline/
 ### 1. Clone the repository
 
 ```bash
-https://github.com/evars69/cognitive_voice_pipeline.git
+git clone https://github.com/evars69/cognitive_voice_pipeline.git
 cd cognitive_voice_pipeline
-```
+---
 
-### 2. Set up your Python environment
+## 🚀 Usage Guide
 
-```bash
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-```
+### 🧠 Train the model
 
-### 3. Install required packages
+* python src/train.py
 
-```bash
-pip install -r requirements.txt
-```
+### 🔍 Predict from CLI
+
+* python src/predict.py data/Recording.m4a
+
+## 🌐 API Usage
+
+### ▶️ Run Locally
+
+* python app.py
+
+Then in Postman or any REST client:
+
+* **Method** : `POST`
+* **URL** : `http://127.0.0.1:5000/predict`
+* **Form-Data Key** : `file`
+* **Value** : Upload your `.wav` or `.m4a` audio file
+
+### 🌍 Deployed on Render
+
+> Note: Render may cause cold-start delays. If it's inactive for a while, the first request can be slow.
+
+**API URL: [https://cognitive-voice-pipeline-1.onrender.com](https://cognitive-voice-pipeline-1.onrender.com)**
 
 ---
 
-## 🚀 How to Use
-
-### 👉 Train the model
-
-```bash
-python src/train.py
-```
-
-### 👉 Predict cognitive state from new audio
-
-```bash
-python src/predict.py data/Recording.m4a
-```
+## 📸 Postman Screenshot(Attached)
 
 ---
 
 ## 📊 Features Extracted
 
-* **MFCC (Mel-Frequency Cepstral Coefficients):** Captures timbre and frequency details.
-* **Chroma Features:** Harmonic content for identifying pitch variation.
-* **Speech Rate & Pauses:** Derived from signal duration *(NLP features to come)*
-* **Pitch Variability:** Using spectral features *(future enhancement)*
+* 🎵  **MFCC** : Mel-Frequency Cepstral Coefficients
+* 🎼  **Chroma Features** : Pitch & harmony indicators
+* ⏱️  **Zero-Crossing Rate** : Speech texture/energy
+* 🧮  **Combined Vector Size** : 26 features total
 
 ---
 
-## 🧠 Machine Learning
+## 🧠 ML Models Used
 
-* **Random Forest Classifier** for supervised classification.
-* **Isolation Forest** for unsupervised outlier detection *(optional)*
-
-> Future improvements: add NLP-based sentence analysis and validate against medical datasets.
-
----
-
-## 📈 Sample Output
-
-```
-MFCC shape: (13,)
-Chroma shape: (12,)
-Combined feature shape: (25,)
-Final feature shape: (26,)
-Predicted cognitive state: slow_decline
-```
+* ✅ **Random Forest Classifier** (supervised)
+* 🧪 **Isolation Forest** (optional anomaly detection)
 
 ---
 
 ## 🔮 Planned Enhancements
 
-* Integrate speech-to-text transcription (e.g., via `whisper` or `SpeechRecognition`)
-* NLP analysis of fillers, sentence lag, and task-based language recall
-* Add MFCC/Chroma visualizations
-* Build a frontend + REST API
+* 📜 Whisper-based speech-to-text integration
+* 🧠 NLP for fillers, pauses, sentence structure
+* 📊 MFCC/Chroma visualizations
+* 💻 Frontend with React + integrated Flask API
 
 ---
 
-## 👩‍⚕️ Disclaimer
+## 📈 Sample Output
 
-This is a research prototype only. Do not use for diagnosis or clinical decision-making. Please consult licensed professionals.
+- 🎵 MFCC shape: `(13,)`
+- 🎼 Chroma shape: `(12,)`
+- 🧮 Combined feature shape: `(25,)`
+- 🧠 Final feature shape: `(26,)`
+- 🩺 Predicted cognitive state: `slow_decline`
+
+---
+
+## ⚠️ Disclaimer
+
+* This is a **research prototype only**. Not intended for clinical or diagnostic purposes. Always consult a qualified professional for healthcare decisions.
 
 ---
 
 ## ✨ Contributors
 
-* **Developer:** Varsha
-* **Project Advisor:** MemoTag AI team
+* 👩‍💻 **Developer:** Varsha
+* 🧪 **Advisors:** MemoTag AI Team
+```
