@@ -42,8 +42,13 @@ def predict(audio_path):
     prediction = model.predict(features)
     print(f"Predicted cognitive state: {prediction[0]}")
 
+    return prediction[0]   # ✅ This line is important!
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python src/predict.py <data/Recording.m4a>")
     else:
         predict(sys.argv[1])
+
+

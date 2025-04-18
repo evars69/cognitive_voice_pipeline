@@ -29,7 +29,7 @@ for filename in os.listdir(data_dir):
         feature_vector = extract_features(file_path)
         features.append(feature_vector)
 
-        # Manually assign label here
+        # Assign label here(Manually)
         label = input(f"Enter label for {filename}: ")
         labels.append(label)
 
