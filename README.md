@@ -1,8 +1,9 @@
+
 # 🧠 MemoTag | Voice-Based Cognitive Decline Detection
 
 Welcome to **MemoTag's Speech Intelligence Module**, a research prototype that leverages **audio feature engineering + machine learning** to detect **early signs of cognitive decline** — all from just a voice sample. 🎙️🧬
 
-🌐 **Live API (Render)**: https://cognitive-voice-pipeline-1.onrender.com
+🌐 **Live API (Render)**: https://cognitive-voice-pipeline-1.onrender.com  
 🖥️ **Local Server**: http://127.0.0.1:5000
 
 ---
@@ -49,17 +50,18 @@ This system aims to **detect those indicators** from voice recordings and classi
 
 ## 🗂️ Project Structure
 
-cognitive_voice_pipeline/
-├── data/              # Input audio files (m4a, wav, etc.)
-├── model/             # Saved ML models
-├── result/            # Output predictions
-├── src/
-│   ├── extract_features.py
-│   ├── train.py
-│   ├── predict.py
-├── app.py             # Flask API server (root-level)
-├── requirements.txt
+cognitive_voice_pipeline/  
+├── data/              # Input audio files (m4a, wav, etc.)  
+├── model/             # Saved ML models  
+├── result/            # Output predictions  
+├── src/  
+│   ├── extract_features.py  
+│   ├── train.py  
+│   ├── predict.py  
+├── app.py             # Flask API server (root-level)  
+├── requirements.txt  
 └── README.md
+
 
 ---
 
@@ -70,6 +72,8 @@ cognitive_voice_pipeline/
 ```bash
 git clone https://github.com/evars69/cognitive_voice_pipeline.git
 cd cognitive_voice_pipeline
+```
+
 ---
 
 ## 🚀 Usage Guide
@@ -109,35 +113,35 @@ Then in Postman or any REST client:
 
 ## 📊 Features Extracted
 
-* 🎵  **MFCC** : Mel-Frequency Cepstral Coefficients
-* 🎼  **Chroma Features** : Pitch & harmony indicators
-* ⏱️  **Zero-Crossing Rate** : Speech texture/energy
+* 🎵  **MFCC** : Mel-Frequency Cepstral Coefficients  
+* 🎼  **Chroma Features** : Pitch & harmony indicators  
+* ⏱️  **Zero-Crossing Rate** : Speech texture/energy  
 * 🧮  **Combined Vector Size** : 26 features total
 
 ---
 
 ## 🧠 ML Models Used
 
-* ✅ **Random Forest Classifier** (supervised)
+* ✅ **Random Forest Classifier** (supervised)  
 * 🧪 **Isolation Forest** (optional anomaly detection)
 
 ---
 
 ## 🔮 Planned Enhancements
 
-* 📜 Whisper-based speech-to-text integration
-* 🧠 NLP for fillers, pauses, sentence structure
-* 📊 MFCC/Chroma visualizations
+* 📜 Whisper-based speech-to-text integration  
+* 🧠 NLP for fillers, pauses, sentence structure  
+* 📊 MFCC/Chroma visualizations  
 * 💻 Frontend with React + integrated Flask API
 
 ---
 
 ## 📈 Sample Output
 
-- 🎵 MFCC shape: `(13,)`
-- 🎼 Chroma shape: `(12,)`
-- 🧮 Combined feature shape: `(25,)`
-- 🧠 Final feature shape: `(26,)`
+- 🎵 MFCC shape: `(13,)`  
+- 🎼 Chroma shape: `(12,)`  
+- 🧮 Combined feature shape: `(25,)`  
+- 🧠 Final feature shape: `(26,)`  
 - 🩺 Predicted cognitive state: `slow_decline`
 
 ---
@@ -150,6 +154,5 @@ Then in Postman or any REST client:
 
 ## ✨ Contributors
 
-* 👩‍💻 **Developer:** Varsha
+* 👩‍💻 **Developer:** Varsha  
 * 🧪 **Advisors:** MemoTag AI Team
-```
