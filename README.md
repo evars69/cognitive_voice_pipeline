@@ -47,15 +47,16 @@ cognitive_voice_pipeline/
 │   └── Recording.m4a
 ├── model/                 # Saved ML models
 │   └── voice_model.pkl
-├── result/                # Output predictions
+├── result/                # Output predictions and analysis (to be updated)
 │
 ├── src/
 │   ├── extract_features.py   # MFCC, Chroma, etc.
 │   ├── train.py              # Train and save RandomForestClassifier
-│   └── predict.py            # Load model and predict cognitive state
+│   └── predict.py        # Load model and predict cognitive state
 │
 ├── requirements.txt
 └── README.md
+
 ```
 
 ---
